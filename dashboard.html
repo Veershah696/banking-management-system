@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+        .modal-content { background: white; margin: 10% auto; padding: 20px; width: 350px; border-radius: 8px; }
+        .modal-content input { width: 90%; padding: 8px; margin: 10px 0; }
+        .btn-add { background: #28a745; color: white; border: none; padding: 10px 20px; cursor: pointer; border-radius: 4px; margin-bottom: 10px; }
+        .btn-edit { background: #ffc107; color: black; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
+        .btn-delete { background: #dc3545; color: white; border: none; padding: 5px 10px; cursor: pointer; border-radius: 4px; }
+        .health-status { padding: 5px; font-size: 12px; margin-right: 15px; }
+    </style>
+</head>
+<body onload="loadData()">
+
+<div class="header">
+    <h2>🏦 Bank Dashboard</h2>
+    <div style="display: flex; align-items: center;">
+        <span id="health-indicator" class="health-status">Checking connection...</span>
+        <button onclick="logout()">Logout</button>
+    </div>
+</div>
+
+<div class="container">
+    <h3>Manage Accounts</h3>
+    
+    <div style="display: flex; justify-content: space-between; align-items: center;">
+        <input type="text" id="search" placeholder="Search by name..." onkeyup="searchData()">
+        <button class="btn-add" onclick="showModal('add')">+ Add Account</button>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Account No</th>
+                <th>Balance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+</div>
+
+<!-- Modal for Add/Edit -->
+<div id="accountModal" class="modal">
+    <div class="modal-content">
+        <h3 id="modalTitle">Add Account</h3>
+        <input type="text" id="accName" placeholder="Full Name">
+        <input type="number" id="accNo" placeholder="Account Number">
+        <input type="number" id="accBalance" placeholder="Initial Balance">
+        <div style="text-align: right;">
+            <button onclick="closeModal()">Cancel</button>
+            <button id="saveBtn" style="background: #007bff; color: white; border: none; padding: 8px 15px; cursor: pointer;">Save</button>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
